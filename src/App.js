@@ -3,6 +3,51 @@ import "./App.css";
 import axios from "axios";
 import usePrevState from "./hooks/usePrevState";
 
+// * Tracing
+
+//init
+//term: state => javascript
+//result: state => array: empty   (create state)
+//prevTerm: custom hook-> skip use effect -> return undifined
+//useEffect API -> skip
+//return
+//after render 1
+//useEffect -> inside custom hook-> use ref -> javascript
+//useEffect -> API -> update state -> result
+
+
+
+//new render
+//term: state => javascript
+//result: state -> array: list from wiki
+//prevTerm -> custom hook -> return javascript
+//return
+
+//after render 2
+//useEffect -> inside custom hook-> use ref -> javascript
+//useEffect -> API ->      /term: javascript vs prevTerm: javascript
+
+
+//update input -> update state -> re render
+//term: state => javascript2
+//result: state => old data
+//prevTerm -> custom hook -> javascript
+//return
+
+//after render 3
+  //useEffect -> inside custom hook-> use ref -> javascript2
+    //useEffect -> API -> //term: javascript2 vs prevTerm: javascript => search will run => update state
+
+//re render 4
+//term: state => javascript
+
+
+
+
+
+
+
+
 function App() {
   const [term, setTerm] = useState("javascript");
   const [result, setResult] = useState([]);
@@ -65,6 +110,7 @@ const [term, setTerm] = useState("javascript");
       if (term) {
         search();
       }
+      // term: javascript2 vs javascript1
     } else if (term !== prevTerm) {
       const debounceSearch = setTimeout(() => {
         if (term) {
